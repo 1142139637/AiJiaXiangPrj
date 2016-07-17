@@ -24,7 +24,7 @@ import java.util.List;
 @ContentView(R.layout.activity_guidepage)
 public class GuidePageActivity extends BaseActivity {
 
-    private int imgArr[] = {R.drawable.guide_one,R.drawable.guide_two,R.drawable.guide_three};
+    private int imgArr[] = {R.drawable.guide_one,R.drawable.guide_one,R.drawable.guide_three};
     private List<View> guideFGList;
     @ViewInject(R.id.guide_vp)
     private ViewPager guideVP;
