@@ -1,12 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.lovehome.activity.myview.Issue">
+    android:orientation="vertical"
+    tools:context="com.lovehome.activity.myview.Issue"
+    android:background="#EEEEEE">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#50C476">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_icon"/>
+        <TextView
+            android:id="@+id/aitv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+    </FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:src="@drawable/photo"/>
+    </LinearLayout>
+    <LinearLayout
+        android:background="#5F86E5"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <EditText
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:hint="填写详情"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="70dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/caogao"/>
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/release"/>
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/caogao"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/release"/>
+    </LinearLayout>
+</LinearLayout>
