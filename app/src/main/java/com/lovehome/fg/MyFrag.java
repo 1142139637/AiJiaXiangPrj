@@ -1,7 +1,5 @@
 package com.lovehome.fg;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -10,18 +8,15 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.lovehome.R;
 import com.lovehome.activity.myview.AlterPassword;
-import com.lovehome.activity.myview.ClearBuffer;
 import com.lovehome.activity.myview.MyCollect;
 import com.lovehome.activity.myview.MyInformation;
 import com.lovehome.activity.myview.MyIssue;
 import com.lovehome.activity.myview.MyManuscript;
 import com.lovehome.activity.myview.PlatformStatement;
 import com.lovehome.activity.myview.RegardingLoveHometown;
-import com.lovehome.activity.myview.ShareSoftware;
 import com.lovehome.adapter.MyFragItemAdapter;
 import com.lovehome.bean.MyFragItemBean;
 
@@ -65,7 +60,7 @@ public class MyFrag extends BaseFragment {
         addData(obj,mfitlist01);
         adapter01 = new MyFragItemAdapter(getActivity(),mfitlist01) ;
         myFragLv01.setAdapter(adapter01);
-
+        jump(myFragLv01,mfitlist01);//adapter的点击事件
         //第二个adapter的数据
         Object[] objs = {R.drawable.img_my_fragment_stament_left,"平台声明",5,
                 R.drawable.img_my_fragment_about_left,"关于\"爱家乡\"",6,
@@ -76,12 +71,26 @@ public class MyFrag extends BaseFragment {
         addData(objs,mfitlist02);
         adapter02 = new MyFragItemAdapter(getActivity(),mfitlist02) ;
         myFragLv02.setAdapter(adapter02);
+        jump(myFragLv02,mfitlist02);//adapter的点击事件
+    }
 
+    private void addData(Object[] obj, List list){
+        for (int i=0;i<obj.length;i++){
+            bean = new MyFragItemBean();
+            bean.setImg((int)obj[i]);
+            bean.setContent((String)obj[i+1]);
+            bean.setId((int)obj[i+2]);
+            list.add(bean) ;
+            i = i+2;
+        }
+    }
+
+    public void jump(ListView view ,final List<MyFragItemBean> list){
         //adapter的点击事件
-        myFragLv01.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MyFragItemBean mfib  =  mfitlist01.get(position);
+                MyFragItemBean mfib  =  list.get(position);
                 int ids = mfib.getId();
                 switch (ids){
                     case 1://我的发布
@@ -103,32 +112,19 @@ public class MyFrag extends BaseFragment {
                         startActivity(new Intent(getActivity(),RegardingLoveHometown.class));
                         break;
                     case 7://分享软件
-                        startActivity(new Intent(getActivity(),ShareSoftware.class));
+
                         break;
                     case 8://修改密码
                         startActivity(new Intent(getActivity(),AlterPassword.class));
                         break;
                     case 9://清除缓存
-                        startActivity(new Intent(getActivity(),ClearBuffer.class));
+
                         break;
                     default:
                         break;
                 }
             }
         });
-
-
-    }
-
-    private void addData(Object[] obj, List list){
-        for (int i=0;i<obj.length;i++){
-            bean = new MyFragItemBean();
-            bean.setImg((int)obj[i]);
-            bean.setContent((String)obj[i+1]);
-            bean.setId((int)obj[i+2]);
-            list.add(bean) ;
-            i = i+2;
-        }
     }
 
 }
