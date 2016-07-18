@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.lovehome.R;
@@ -37,6 +38,7 @@ public class RelTypeFrag extends BaseFragment{
     private Context context;
 
     private String strArr[] = {"A","B","C","D"};
+    public static String titles ;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -60,6 +62,7 @@ public class RelTypeFrag extends BaseFragment{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                titles = ConstantMethod.getReleaseTypeList().get(position).getReleaseTypeName();
                 showBasicNoTitle();
             }
         });
@@ -76,6 +79,8 @@ public class RelTypeFrag extends BaseFragment{
                             @Override
                             public void onClick(int which) {
                                 //填写事件
+                                titles += strArr[which-1];
+                                Toast.makeText(getActivity(),titles,Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getActivity(),Issue.class));
                             }
                         })
