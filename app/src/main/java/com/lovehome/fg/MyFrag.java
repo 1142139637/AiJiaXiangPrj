@@ -1,4 +1,6 @@
 package com.lovehome.fg;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -23,6 +25,7 @@ import com.lovehome.activity.myview.PlatformStatement;
 import com.lovehome.activity.myview.RegardingLoveHometown;
 import com.lovehome.adapter.MyFragItemAdapter;
 import com.lovehome.bean.MyFragItemBean;
+import com.lovehome.util.DataCleanManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +130,24 @@ public class MyFrag extends BaseFragment {
                     case 9://清除缓存
                         showWindows(views.findViewById(R.id.my_frag_img_id));
 
+                        AlertDialog.Builder clean = new AlertDialog.Builder(getActivity());
+                        clean.setTitle("确认清除缓存？");
+                        clean.setNegativeButton("确认", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //调用工具类，清除缓存
+                                DataCleanManager.cleanInternalCache(getActivity());
+                                Toast.makeText(getActivity(), "清除成功！", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        clean.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        clean.setCancelable(false);
+                        clean.show();
                         break;
                     default:
                         break;
