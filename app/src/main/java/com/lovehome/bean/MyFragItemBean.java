@@ -6,9 +6,17 @@ package com.lovehome.bean;
 public class MyFragItemBean {
     public int img ;//图片地址
     public String content ;//文字内容
-
+    public int id ;
     public int getImg() {
         return img;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setImg(int img) {
@@ -21,5 +29,14 @@ public class MyFragItemBean {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "MyFragItemBean{" +
+                "img=" + img +
+                ", content='" + content + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
