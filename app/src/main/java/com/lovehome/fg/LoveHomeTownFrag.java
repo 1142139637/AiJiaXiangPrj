@@ -10,6 +10,9 @@ import android.webkit.WebViewClient;
 
 import com.lovehome.R;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by JH on 2016/7/15.
  */
@@ -22,6 +25,7 @@ public class LoveHomeTownFrag extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.frag_hometown,container,false);
+//        Unbinder bind = ButterKnife.bind(getActivity());//一定要在 setContentView 之后哈，不然你就等着玩空指针吧
     }
 
     @Override
