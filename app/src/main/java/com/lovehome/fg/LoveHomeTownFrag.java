@@ -34,17 +34,7 @@ public class LoveHomeTownFrag extends BaseFragment {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
-
-
-
                 return true;
-
-
-
-                //https://github.com/1142139637/AiJiaXiangPrj.git
-
-
-
             }
         });
         //得到设置类
