@@ -13,7 +13,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lovehome.R;
+import com.lovehome.activity.myview.AlterPassword;
+import com.lovehome.activity.myview.ClearBuffer;
+import com.lovehome.activity.myview.MyCollect;
+import com.lovehome.activity.myview.MyInformation;
 import com.lovehome.activity.myview.MyIssue;
+import com.lovehome.activity.myview.MyManuscript;
+import com.lovehome.activity.myview.PlatformStatement;
+import com.lovehome.activity.myview.RegardingLoveHometown;
+import com.lovehome.activity.myview.ShareSoftware;
 import com.lovehome.adapter.MyFragItemAdapter;
 import com.lovehome.bean.MyFragItemBean;
 
@@ -78,6 +86,30 @@ public class MyFrag extends BaseFragment {
                 switch (ids){
                     case 1://我的发布
                         startActivity(new Intent(getActivity(),MyIssue.class));
+                        break;
+                    case 2://我的草稿
+                        startActivity(new Intent(getActivity(),MyManuscript.class));
+                        break;
+                    case 3://我的收藏
+                        startActivity(new Intent(getActivity(),MyCollect.class));
+                        break;
+                    case 4://我的消息
+                        startActivity(new Intent(getActivity(),MyInformation.class));
+                        break;
+                    case 5://平台声明
+                        startActivity(new Intent(getActivity(),PlatformStatement.class));
+                        break;
+                    case 6://关于爱家乡
+                        startActivity(new Intent(getActivity(),RegardingLoveHometown.class));
+                        break;
+                    case 7://分享软件
+                        startActivity(new Intent(getActivity(),ShareSoftware.class));
+                        break;
+                    case 8://修改密码
+                        startActivity(new Intent(getActivity(),AlterPassword.class));
+                        break;
+                    case 9://清除缓存
+                        startActivity(new Intent(getActivity(),ClearBuffer.class));
                         break;
                     default:
                         break;

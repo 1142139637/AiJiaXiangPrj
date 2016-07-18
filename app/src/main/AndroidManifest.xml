@@ -19,7 +19,15 @@
         </activity>
         <activity android:name=".activity.GuidePageActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.myview.MyIssue"></activity>
+        <activity android:name=".activity.myview.MyIssue" />
+        <activity android:name=".activity.myview.MyManuscript" />
+        <activity android:name=".activity.myview.MyCollect" />
+        <activity android:name=".activity.myview.MyInformation" />
+        <activity android:name=".activity.myview.PlatformStatement" />
+        <activity android:name=".activity.myview.RegardingLoveHometown" />
+        <activity android:name=".activity.myview.ShareSoftware" />
+        <activity android:name=".activity.myview.AlterPassword" />
+        <activity android:name=".activity.myview.ClearBuffer"></activity>
     </application>
 
 </manifest>
