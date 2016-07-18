@@ -36,6 +36,7 @@ public class LoveHomeTownFrag extends BaseFragment {
                 view.loadUrl(url);
                 return true;
 
+
                 //https://github.com/1142139637/AiJiaXiangPrj.git
 
 
