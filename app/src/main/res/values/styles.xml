@@ -53,4 +53,17 @@
             <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
         </style>
 
+    <!--白色字体-->
+    <style name="font"  >
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <!--有左右距离的居中布局-->
+    <style name="layoutCenter">
+        <item name="android:layout_marginLeft">7dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
 </resources>
