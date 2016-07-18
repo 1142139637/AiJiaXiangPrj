@@ -1,6 +1,7 @@
 package com.lovehome.fg;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.GridView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.lovehome.R;
 import com.lovehome.activity.ActionSheetDialog;
+import com.lovehome.activity.myview.Issue;
 import com.lovehome.adapter.RelTypeAdapter;
 import com.lovehome.common.ConstantMethod;
 import com.lovehome.util.ToastManageUtil;
@@ -74,7 +76,7 @@ public class RelTypeFrag extends BaseFragment{
                             @Override
                             public void onClick(int which) {
                                 //填写事件
-                                Log.i("TAG",strArr[which-1]+""+(which-1));
+                                startActivity(new Intent(getActivity(),Issue.class));
                             }
                         })
                 .show();

@@ -179,7 +179,6 @@ public class MyFrag extends BaseFragment {
 //        pop.setOutsideTouchable(true);//这只为true 点击popup窗口以为的地方  窗口会关闭背景
 //        pop.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_getcode_bg));
 //        pop.getBackground().setAlpha(100);//设置透明度
-//
 //        pop.showAsDropDown(views);
     }
 
