@@ -18,6 +18,6 @@ public class MyWebAppInterface {
     public String lookData(String data) {
         Log.e("TAG", data + "hello!!");
         //返回信息给html
-        return "hello";
+        return "hello,";
     }
 }

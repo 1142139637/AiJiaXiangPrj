@@ -1,5 +1,8 @@
 package com.lovehome.fg;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.lovehome.R;
 import com.lovehome.activity.myview.AlterPassword;
@@ -19,6 +23,7 @@ import com.lovehome.activity.myview.PlatformStatement;
 import com.lovehome.activity.myview.RegardingLoveHometown;
 import com.lovehome.adapter.MyFragItemAdapter;
 import com.lovehome.bean.MyFragItemBean;
+import com.lovehome.util.DataCleanManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +123,24 @@ public class MyFrag extends BaseFragment {
                         startActivity(new Intent(getActivity(),AlterPassword.class));
                         break;
                     case 9://清除缓存
+                        AlertDialog.Builder clean = new AlertDialog.Builder(getActivity());
+                        clean.setTitle("确认清除缓存？");
+                        clean.setNegativeButton("确认", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //调用工具类，清除缓存
+                                DataCleanManager.cleanInternalCache(getActivity());
+                                Toast.makeText(getActivity(), "清除成功！", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        clean.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
+                            }
+                        });
+                        clean.setCancelable(false);
+                        clean.show();
                         break;
                     default:
                         break;
