@@ -111,6 +111,7 @@ public class MyFrag extends BaseFragment {
                         startActivity(new Intent(getActivity(),MyInformation.class));
                         break;
                     case 5://平台声明
+
                         startActivity(new Intent(getActivity(),PlatformStatement.class));
                         break;
                     case 6://关于爱家乡
