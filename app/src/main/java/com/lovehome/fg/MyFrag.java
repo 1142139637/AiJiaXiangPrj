@@ -1,14 +1,14 @@
 package com.lovehome.fg;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,10 +23,10 @@ import com.lovehome.activity.myview.PlatformStatement;
 import com.lovehome.activity.myview.RegardingLoveHometown;
 import com.lovehome.adapter.MyFragItemAdapter;
 import com.lovehome.bean.MyFragItemBean;
-import com.lovehome.util.DataCleanManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class MyFrag extends BaseFragment {
 
@@ -40,6 +40,7 @@ public class MyFrag extends BaseFragment {
     MyFragItemAdapter adapter01;
     MyFragItemAdapter adapter02;
     MyFragItemBean bean = null ;
+    View views ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class MyFrag extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        views = view ;
         myFragImgId = (ImageView) view.findViewById(R.id.my_frag_img_id);
         myFragPhoneId = (TextView) view.findViewById(R.id.my_frag_phone_id);
         myFragGoId = (TextView) view.findViewById(R.id.my_frag_go_id);
@@ -111,7 +113,6 @@ public class MyFrag extends BaseFragment {
                         startActivity(new Intent(getActivity(),MyInformation.class));
                         break;
                     case 5://平台声明
-
                         startActivity(new Intent(getActivity(),PlatformStatement.class));
                         break;
                     case 6://关于爱家乡
@@ -124,24 +125,8 @@ public class MyFrag extends BaseFragment {
                         startActivity(new Intent(getActivity(),AlterPassword.class));
                         break;
                     case 9://清除缓存
-                        AlertDialog.Builder clean = new AlertDialog.Builder(getActivity());
-                        clean.setTitle("确认清除缓存？");
-                        clean.setNegativeButton("确认", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //调用工具类，清除缓存
-                                DataCleanManager.cleanInternalCache(getActivity());
-                                Toast.makeText(getActivity(), "清除成功！", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        clean.setPositiveButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                        showWindows(views.findViewById(R.id.my_frag_img_id));
 
-                            }
-                        });
-                        clean.setCancelable(false);
-                        clean.show();
                         break;
                     default:
                         break;
@@ -150,4 +135,33 @@ public class MyFrag extends BaseFragment {
         });
     }
 
+
+    public void showWindows(View views) {
+//        //打布局
+//        View view = LayoutInflater.from(getActivity()).inflate(R.layout.popouwindow, null);
+//        //找到文本
+//        TextView tv1 = (TextView) view.findViewById(R.id.tv1);
+//        //文本的触摸事件
+//        tv1.setOnTouchListener(new View.OnTouchListener() {
+//            public boolean onTouch(View arg0, MotionEvent arg1) {
+//                Toast.makeText(getActivity(), "你好ssssssssssssssss", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        });
+//        /**
+//         * view popup加载的布局视图
+//         * LayoutParams.MATCH_PARENT 窗口的宽度
+//         *  LayoutParams.WRAP_CONTENT 窗口的高度
+//         */
+//        PopupWindow pop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//        pop.setFocusable(true);//是否聚焦
+//        pop.setOutsideTouchable(true);//这只为true 点击popup窗口以为的地方  窗口会关闭背景
+//        pop.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_getcode_bg));
+//        pop.getBackground().setAlpha(100);//设置透明度
+//
+//        pop.showAsDropDown(views);
+    }
+
 }
+
+
