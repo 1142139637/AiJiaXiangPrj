@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.lovehome.activity.myview.Issue"
-    android:background="#EEEEEE">
+    android:background="#CCC">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/back_icon"/>
         <TextView
-
             android:id="@+id/aitv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,7 +29,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:background="#FFFFFF">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -38,11 +38,186 @@
                 android:src="@drawable/photo"/>
     </LinearLayout>
     <LinearLayout
-        android:background="#5F86E5"
+        android:background="#FFFFFF"
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <!--        商家名称        -->
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="商家名称 ："/>
+            <com.lovehome.util.DefinedEdictor
+                android:layout_weight="1"
+                android:id="@+id/et"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/cha"/>
+        </LinearLayout>
+        <!--        营业时间        -->
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="营业时间 ："/>
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#ccc"
+                android:text="开始时间"/>
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#ccc"
+                android:text="至"/>
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#ccc"
+                android:text="结束时间"/>
+        </LinearLayout>
+        <!--        人均消费        -->
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="人均消费 ："/>
+            <com.lovehome.util.DefinedEdictor
+                android:layout_weight="3"
+                android:digits="1234567890."
+                android:singleLine="true"
+                android:background="@null"
+                android:textSize="13sp"
+                android:hint="人均消费"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/cha"/>
+            <TextView
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="元"/>
+        </LinearLayout>
+        <!--        计量单位        -->
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="计量单位 ："/>
+            <com.lovehome.util.DefinedEdictor
+                android:layout_weight="1"
+                android:background="@null"
+                android:textSize="13sp"
+                android:hint="请填写计量单位（例如小时等）"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/cha"/>
+        </LinearLayout>
+        <!--        地址        -->
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="地 址 ："/>
+            <com.lovehome.util.DefinedEdictor
+                android:layout_weight="1"
+                android:background="@null"
+                android:textSize="13sp"
+                android:hint="请填写地址"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/cha"/>
+        </LinearLayout>
+        <!--        联系人        -->
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="联系人 ："/>
+            <com.lovehome.util.DefinedEdictor
+                android:layout_weight="1"
+                android:background="@null"
+                android:textSize="13sp"
+                android:hint="请填写联系人"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/cha"/>
+        </LinearLayout>
+        <!--        电话        -->
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="电 话 ："/>
+            <com.lovehome.util.DefinedEdictor
+                android:layout_weight="1"
+                android:background="@null"
+                android:textSize="13sp"
+                android:hint="请填写联系人"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/cha"/>
+        </LinearLayout>
+
 
     </LinearLayout>
     <LinearLayout
