@@ -15,6 +15,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.flyco.dialog.listener.OnOperItemClickL;
 import com.lovehome.R;
 import com.lovehome.activity.ActionSheetDialog;
 import com.lovehome.activity.myview.Issue;
@@ -63,27 +64,50 @@ public class RelTypeFrag extends BaseFragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 titles = ConstantMethod.getReleaseTypeList().get(position).getReleaseTypeName();
-                showBasicNoTitle();
+//                showBasicNoTitle();
+                ActionSheetDialogNoTitle(strArr);
             }
         });
     }
 
-    public void showBasicNoTitle() {
-        new ActionSheetDialog(context)
-                .builder()
-                .setTitle("好友列表")
-                .setCancelable(true)
-                .setCanceledOnTouchOutside(true)
-                .addSheetItem(strArr, ActionSheetDialog.SheetItemColor.Red
-                        , new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-                                //填写事件
-                                titles += strArr[which-1];
-                                Toast.makeText(getActivity(),titles,Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getActivity(),Issue.class));
-                            }
-                        })
-                .show();
+//    public void showBasicNoTitle() {
+//        new ActionSheetDialog(context)
+//                .builder()
+//                .setTitle("好友列表")
+//                .setCancelable(true)
+//                .setCanceledOnTouchOutside(true)
+//                .addSheetItem(strArr, ActionSheetDialog.SheetItemColor.Red
+//                        , new ActionSheetDialog.OnSheetItemClickListener() {
+//                            @Override
+//                            public void onClick(int which) {
+//                                //填写事件
+//                                titles += strArr[which-1];
+//                                Toast.makeText(getActivity(),titles,Toast.LENGTH_SHORT).show();
+//                                startActivity(new Intent(getActivity(),Issue.class));
+//                            }
+//                        })
+//                .show();
+//    }
+
+
+
+    //自下而上的dialog
+    private void ActionSheetDialogNoTitle(final String[] stringItems) {
+
+        final com.flyco.dialog.widget.ActionSheetDialog dialog = new com.flyco.dialog.widget.ActionSheetDialog(getActivity(), stringItems,null ){
+            @Override
+            public com.flyco.dialog.widget.ActionSheetDialog cornerRadius(float cornerRadius_DP) {
+                return super.cornerRadius(100.0f);
+            }
+        };
+        dialog.isTitleShow(false).show();
+
+        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+            @Override
+            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), stringItems[position]+"",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
     }
 }
