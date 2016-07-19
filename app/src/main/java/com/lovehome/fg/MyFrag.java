@@ -2,6 +2,7 @@ package com.lovehome.fg;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,12 +11,14 @@ import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lovehome.R;
+import com.lovehome.activity.LoginActivity;
 import com.lovehome.activity.myview.AlterPassword;
 import com.lovehome.activity.myview.MyCollect;
 import com.lovehome.activity.myview.MyInformation;
@@ -47,6 +50,8 @@ public class MyFrag extends BaseFragment {
     MyFragItemAdapter adapter02;
     MyFragItemBean bean = null ;
     View views ;
+    private LinearLayout llLogin;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,6 +67,8 @@ public class MyFrag extends BaseFragment {
         myFragGoId = (TextView) view.findViewById(R.id.my_frag_go_id);
         myFragLv01 = (ListView) view.findViewById(R.id.my_frag_lv_01);
         myFragLv02 = (ListView) view.findViewById(R.id.my_frag_lv_02);
+        llLogin = (LinearLayout) view.findViewById(R.id.ll_login);
+        login();
         mfitlist01 = new ArrayList<>();
         mfitlist02 = new ArrayList<>();
         //第一个adapter的数据
@@ -86,6 +93,17 @@ public class MyFrag extends BaseFragment {
         myFragLv02.setAdapter(adapter02);
         jump(myFragLv02,mfitlist02);//adapter的点击事件
     }
+
+    private void login() {
+        llLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+    }
+
+
 
     private void addData(Object[] obj, List list){
         for (int i=0;i<obj.length;i++){
