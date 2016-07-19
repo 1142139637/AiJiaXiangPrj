@@ -79,15 +79,14 @@
                 android:text="营业时间 ："/>
             <TextView
                 android:layout_weight="3"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="#ccc"
                 android:text="开始时间"/>
             <TextView
-                android:layout_weight="3"
-                android:gravity="center"
-                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:textColor="#ccc"
                 android:text="至"/>
@@ -98,6 +97,12 @@
                 android:layout_height="match_parent"
                 android:textColor="#ccc"
                 android:text="结束时间"/>
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#ccc"/>
         </LinearLayout>
         <!--        人均消费        -->
         <LinearLayout
@@ -114,8 +119,7 @@
                 android:text="人均消费 ："/>
             <com.lovehome.util.DefinedEdictor
                 android:layout_weight="3"
-                android:digits="1234567890."
-                android:singleLine="true"
+                android:inputType="number"
                 android:background="@null"
                 android:textSize="13sp"
                 android:hint="人均消费"
@@ -123,11 +127,16 @@
                 android:layout_height="match_parent"
                 android:drawableRight="@drawable/cha"/>
             <TextView
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="元"/>
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
         <!--        计量单位        -->
         <LinearLayout
@@ -212,7 +221,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:textSize="13sp"
-                android:hint="请填写联系人"
+                android:hint="请填写正确地联系方式"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableRight="@drawable/cha"/>
@@ -225,21 +234,22 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical">
-        <EditText
+        <com.lovehome.util.DefinedEdictor
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textMultiLine"
+            android:textSize="14sp"
             android:hint="填写详情"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_height="70dp">
+        android:layout_height="65dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:orientation="horizontal">
             <TextView
