@@ -25,7 +25,7 @@ public class LoadActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        // 延迟3秒跳转
+        // 延迟2秒跳转
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -35,7 +35,7 @@ public class LoadActivity extends BaseActivity {
                     startActivity(new Intent(LoadActivity.this,GuidePageActivity.class));
                 }
             }
-        },3000);
+        },2000);
     }
 
 
