@@ -15,6 +15,10 @@ import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.flyco.animation.BounceEnter.BounceTopEnter;
+import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.NormalDialog;
 import com.lovehome.R;
 import com.lovehome.activity.myview.AlterPassword;
 import com.lovehome.activity.myview.MyCollect;
@@ -131,26 +135,25 @@ public class MyFrag extends BaseFragment {
                         startActivity(new Intent(getActivity(),AlterPassword.class));
                         break;
                     case 9://清除缓存
-                        showWindows(views.findViewById(R.id.my_frag_img_id));
-
-                        AlertDialog.Builder clean = new AlertDialog.Builder(getActivity());
-                        clean.setTitle("确认清除缓存？");
-                        clean.setNegativeButton("确认", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //调用工具类，清除缓存
-                                DataCleanManager.cleanInternalCache(getActivity());
-                                Toast.makeText(getActivity(), "清除成功！", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        clean.setPositiveButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                        clean.setCancelable(false);
-                        clean.show();
+                        NormalDialogStyleTwo();
+//                        AlertDialog.Builder clean = new AlertDialog.Builder(getActivity());
+//                        clean.setTitle("确认清除缓存？");
+//                        clean.setNegativeButton("确认", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                //调用工具类，清除缓存
+//                                DataCleanManager.cleanInternalCache(getActivity());
+//                                Toast.makeText(getActivity(), "清除成功！", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//                        clean.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//
+//                            }
+//                        });
+//                        clean.setCancelable(false);
+//                        clean.show();
                         break;
                     default:
                         break;
@@ -189,32 +192,33 @@ public class MyFrag extends BaseFragment {
             oks.show(getActivity());
     }
 
+    //清除缓存
+    private void NormalDialogStyleTwo() {
+        final NormalDialog dialog = new NormalDialog(getActivity());
+        dialog.content("确认清除缓存")//
+                .style(NormalDialog.STYLE_TWO)//
+                .titleTextSize(23)//
+                .showAnim(new BounceTopEnter())//
+                .dismissAnim( new SlideBottomExit())//
+                .show();
 
-    public void showWindows(View views) {
-//        //打布局
-//        View view = LayoutInflater.from(getActivity()).inflate(R.layout.popouwindow, null);
-//        //找到文本
-//        TextView tv1 = (TextView) view.findViewById(R.id.tv1);
-//        //文本的触摸事件
-//        tv1.setOnTouchListener(new View.OnTouchListener() {
-//            public boolean onTouch(View arg0, MotionEvent arg1) {
-//                Toast.makeText(getActivity(), "你好ssssssssssssssss", Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//        });
-//        /**
-//         * view popup加载的布局视图
-//         * LayoutParams.MATCH_PARENT 窗口的宽度
-//         *  LayoutParams.WRAP_CONTENT 窗口的高度
-//         */
-//        PopupWindow pop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//        pop.setFocusable(true);//是否聚焦
-//        pop.setOutsideTouchable(true);//这只为true 点击popup窗口以为的地方  窗口会关闭背景
-//        pop.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_getcode_bg));
-//        pop.getBackground().setAlpha(100);//设置透明度
-//        pop.showAsDropDown(views);
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {//取消
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {//确定
+                    @Override
+                    public void onBtnClick() {
+                        DataCleanManager.cleanInternalCache(getActivity());
+                        Toast.makeText(getActivity(), "清除成功！", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+
     }
-
 }
 
 
