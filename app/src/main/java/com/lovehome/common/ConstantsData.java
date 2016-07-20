@@ -7,6 +7,8 @@ package com.lovehome.common;
 public class ConstantsData {
     //登录地址
     public static final String LOGIN_URL = "http://172.16.46.184:8080/AiJiaXiangPrj/UserLogin.do";
+    //QQ登录APP IP
+    public static final String QQ_APP_ID = "1105546048";
 
     public static final int [] relTypeimgArr = {
             com.lovehome.R.drawable.meishi,

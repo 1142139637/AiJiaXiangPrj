@@ -1,7 +1,10 @@
 package com.lovehome.fg;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.LayoutInflater;
@@ -31,6 +34,10 @@ import com.lovehome.adapter.MyFragItemAdapter;
 import com.lovehome.bean.MyFragItemBean;
 import com.lovehome.util.DataCleanManager;
 
+import org.xutils.common.util.DensityUtil;
+import org.xutils.image.ImageOptions;
+import org.xutils.x;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +60,7 @@ public class MyFrag extends BaseFragment {
     private LinearLayout llLogin;
     private TextView tvAddr;
 
-    SharedPreferences sp ;
+    SharedPreferences sp_p,sp_qq ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +70,8 @@ public class MyFrag extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sp= getActivity().getSharedPreferences("user_login_info",0);
+        sp_p= getActivity().getSharedPreferences("user_login_info",0);
+        sp_qq = getActivity().getSharedPreferences("user_login_info_qq",0);
         views = view ;
         myFragImgId = (ImageView) view.findViewById(R.id.my_frag_img_id);
         myFragPhoneId = (TextView) view.findViewById(R.id.my_frag_phone_id);
@@ -100,8 +108,15 @@ public class MyFrag extends BaseFragment {
     }
 
     private void initViews() {
-        myFragPhoneId.setText(sp.getString("pNumber",null));
-        tvAddr.setText(sp.getString("addr",null));
+        if (sp_qq.getString("pNumber",null)!=null){
+            myFragPhoneId.setText(sp_qq.getString("pNumber",null));
+            tvAddr.setText(sp_qq.getString("addr",null));
+            initImages(sp_qq.getString("image",null));
+        }else{
+            myFragPhoneId.setText(sp_p.getString("pNumber",null));
+            tvAddr.setText(sp_p.getString("addr",null));
+        }
+
     }
 
     private void login() {
@@ -109,7 +124,7 @@ public class MyFrag extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //应有一个判断，如果已经登录过就是进入个性资料界面，如果没有登录过就是登录界面
-                if (sp.getString("pNumber",null)==null){
+                if (sp_p.getString("pNumber",null)==null&&sp_qq.getString("pNumber",null)==null){
                     //如果没登录过
                     startActivityForResult(new Intent(getActivity(), LoginActivity.class),1);
                 }else {
@@ -125,10 +140,43 @@ public class MyFrag extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==1&&resultCode==2){
-            Toast.makeText(getActivity(), "欢迎登录", Toast.LENGTH_SHORT).show();
-            myFragPhoneId.setText(sp.getString("pNumber",null));
-            tvAddr.setText(sp.getString("addr",null));
+            Toast.makeText(getActivity(), "欢迎使用手机号登录", Toast.LENGTH_SHORT).show();
+            myFragPhoneId.setText(sp_p.getString("pNumber",null));
+            tvAddr.setText(sp_p.getString("addr",null));
+        }else if (requestCode==1&&resultCode==3){
+            Toast.makeText(getActivity(), "欢迎使用QQ登录", Toast.LENGTH_SHORT).show();
+            myFragPhoneId.setText(sp_qq.getString("pNumber",null));
+            tvAddr.setText(sp_qq.getString("addr",null));
+            initImages(sp_qq.getString("image",null));
         }
+    }
+
+    //加载头像
+    ImageOptions imageOptions;
+    private void initImages(String imageUrl) {
+
+        imageOptions = new ImageOptions.Builder()
+                .setSize(DensityUtil.dip2px(120), DensityUtil.dip2px(120))
+                .setRadius(DensityUtil.dip2px(5))
+                // 如果ImageView的大小不是定义为wrap_content, 不要crop.
+                .setCrop(true)
+                // 加载中或错误图片的ScaleType
+                //.setPlaceholderScaleType(ImageView.ScaleType.MATRIX)
+                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
+                //设置加载过程中的图片
+                .setLoadingDrawableId(R.drawable.mrtx_pic)
+                //设置加载失败后的图片
+                .setFailureDrawableId(R.drawable.mrtx_pic)
+                //设置使用缓存
+                .setUseMemCache(true)
+                //设置支持gif
+                .setIgnoreGif(false)
+                //设置显示圆形图片
+                .setCircular(true)
+                .build();
+
+
+        x.image().bind(myFragImgId,imageUrl,imageOptions);
     }
 
     private void addData(Object[] obj, List list){
