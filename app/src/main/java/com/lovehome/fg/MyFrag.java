@@ -1,10 +1,7 @@
 package com.lovehome.fg;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
+import android.media.Image;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -12,7 +9,6 @@ import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,7 +32,6 @@ import com.lovehome.util.DataCleanManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -45,7 +40,7 @@ public class MyFrag extends BaseFragment {
 
     private ImageView myFragImgId;
     private TextView myFragPhoneId;
-    private TextView myFragGoId;
+    private ImageView myFragGoId;
     private ListView myFragLv01;
     private ListView myFragLv02;
     private List<MyFragItemBean> mfitlist01 ;
@@ -55,6 +50,7 @@ public class MyFrag extends BaseFragment {
     MyFragItemBean bean = null ;
     View views ;
     private LinearLayout llLogin;
+    private TextView tvAddr;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,10 +64,12 @@ public class MyFrag extends BaseFragment {
         views = view ;
         myFragImgId = (ImageView) view.findViewById(R.id.my_frag_img_id);
         myFragPhoneId = (TextView) view.findViewById(R.id.my_frag_phone_id);
-        myFragGoId = (TextView) view.findViewById(R.id.my_frag_go_id);
+        myFragGoId = (ImageView) view.findViewById(R.id.my_frag_go_id);
         myFragLv01 = (ListView) view.findViewById(R.id.my_frag_lv_01);
         myFragLv02 = (ListView) view.findViewById(R.id.my_frag_lv_02);
         llLogin = (LinearLayout) view.findViewById(R.id.ll_login);
+        tvAddr = (TextView) view.findViewById(R.id.tv_addr);
+
         login();
         mfitlist01 = new ArrayList<>();
         mfitlist02 = new ArrayList<>();
@@ -102,12 +100,21 @@ public class MyFrag extends BaseFragment {
         llLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                startActivityForResult(new Intent(getActivity(), LoginActivity.class),1);
             }
         });
     }
 
-
+    //有返回值
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1&&resultCode==2){
+            Bundle bundle = data.getExtras();
+            Log.e("TAG","返回值："+bundle.getString("pNumber"));
+            myFragPhoneId.setText(bundle.getString("pNumber"));
+            tvAddr.setText(bundle.getString("addr"));
+        }
+    }
 
     private void addData(Object[] obj, List list){
         for (int i=0;i<obj.length;i++){
