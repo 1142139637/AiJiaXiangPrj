@@ -30,6 +30,7 @@ import com.lovehome.activity.myview.MyIssue;
 import com.lovehome.activity.myview.MyManuscript;
 import com.lovehome.activity.myview.PlatformStatement;
 import com.lovehome.activity.myview.RegardingLoveHometown;
+import com.lovehome.activity.myview.Register;
 import com.lovehome.adapter.MyFragItemAdapter;
 import com.lovehome.bean.MyFragItemBean;
 import com.lovehome.util.DataCleanManager;
@@ -199,7 +200,8 @@ public class MyFrag extends BaseFragment {
                 int ids = mfib.getId();
                 switch (ids){
                     case 1://我的发布
-                        startActivity(new Intent(getActivity(),MyIssue.class));
+//                        startActivity(new Intent(getActivity(),MyIssue.class));
+                        startActivity(new Intent(getActivity(),Register.class));
                         break;
                     case 2://我的草稿
                         startActivity(new Intent(getActivity(),MyManuscript.class));
