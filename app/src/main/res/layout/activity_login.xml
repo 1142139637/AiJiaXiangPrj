@@ -37,8 +37,7 @@
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/img_login_phone" />
 
-            <EditText
-                android:text="15116186074"
+            <MultiAutoCompleteTextView
                 android:id="@+id/et_account"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
