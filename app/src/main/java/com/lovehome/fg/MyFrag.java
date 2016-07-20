@@ -1,5 +1,6 @@
 package com.lovehome.fg;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.util.Log;
 import android.view.View;
@@ -53,6 +54,7 @@ public class MyFrag extends BaseFragment {
     private LinearLayout llLogin;
     private TextView tvAddr;
 
+    SharedPreferences sp ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class MyFrag extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sp= getActivity().getSharedPreferences("user_login_info",0);
         views = view ;
         myFragImgId = (ImageView) view.findViewById(R.id.my_frag_img_id);
         myFragPhoneId = (TextView) view.findViewById(R.id.my_frag_phone_id);
@@ -70,7 +73,7 @@ public class MyFrag extends BaseFragment {
         myFragLv02 = (ListView) view.findViewById(R.id.my_frag_lv_02);
         llLogin = (LinearLayout) view.findViewById(R.id.ll_login);
         tvAddr = (TextView) view.findViewById(R.id.tv_addr);
-
+        initViews();
         login();
         mfitlist01 = new ArrayList<>();
         mfitlist02 = new ArrayList<>();
@@ -97,11 +100,24 @@ public class MyFrag extends BaseFragment {
         jump(myFragLv02,mfitlist02);//adapter的点击事件
     }
 
+    private void initViews() {
+        myFragPhoneId.setText(sp.getString("pNumber",null));
+        tvAddr.setText(sp.getString("addr",null));
+    }
+
     private void login() {
         llLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getActivity(), LoginActivity.class),1);
+                //应有一个判断，如果已经登录过就是进入个性资料界面，如果没有登录过就是登录界面
+                if (sp.getString("pNumber",null)==null){
+                    //如果没登录过
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class),1);
+                }else {
+                    //否则进入详情页面
+//                    startActivity();
+                }
+
             }
         });
     }
@@ -110,10 +126,9 @@ public class MyFrag extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==1&&resultCode==2){
-            Bundle bundle = data.getExtras();
-            Log.e("TAG","返回值："+bundle.getString("pNumber"));
-            myFragPhoneId.setText(bundle.getString("pNumber"));
-            tvAddr.setText(bundle.getString("addr"));
+            Toast.makeText(getActivity(), "欢迎登录", Toast.LENGTH_SHORT).show();
+            myFragPhoneId.setText(sp.getString("pNumber",null));
+            tvAddr.setText(sp.getString("addr",null));
         }
     }
 

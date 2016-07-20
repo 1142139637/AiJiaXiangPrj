@@ -5,6 +5,7 @@ package com.lovehome.common;
  * 数据常量
  */
 public class ConstantsData {
+    //登录地址
     public static final String LOGIN_URL = "http://172.16.46.184:8080/AiJiaXiangPrj/UserLogin.do";
 
     public static final int [] relTypeimgArr = {
